@@ -1,19 +1,14 @@
 import './App.css'
+import Home from './pages/Home'
 
 function App() {
 
   return (
     <>
-      <Text display="Yash" count="3"/>
-      <Text display="Kevin" count="4"/>
+     <Home/> 
     </>
   )
 }
 
-const Text = ({display}) => {
-  return (
-    <p>{display}</p>
-  )
-}
 
 export default App
