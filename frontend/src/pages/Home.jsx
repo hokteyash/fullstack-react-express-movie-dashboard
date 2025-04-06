@@ -1,6 +1,8 @@
+import { useState } from "react";
 import MovieCard from "../components/MovieCard";
 
 const Home = () => {
+  const [searchQuery,setSearchQuery] = useState("");
   const movies = [
     {
       id: 1,
@@ -28,6 +30,8 @@ const Home = () => {
           type="text"
           placeholder="Search for a movies..."
           className="search-input"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button type="submit" className="search-button">
           Search
