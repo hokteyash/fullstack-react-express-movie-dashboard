@@ -1,8 +1,10 @@
+import "../css/Favorites.css"
+
 const Favorites = () => {
   return (
-    <div>
-      <p>Favorite Page</p>
-      <p>This is the Favorite Page</p>
+    <div className="favorites-empty">
+      <h2>Favorite Page</h2>
+      <p>Starting adding your favorite items and they will appear here</p>
     </div>
   );
 };
