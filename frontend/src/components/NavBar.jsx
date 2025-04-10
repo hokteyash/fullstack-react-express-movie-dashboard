@@ -8,7 +8,8 @@ const NavBar = () => {
                 <Link to='/'>Movie App</Link>
             </div>
             <div>
-                <Link to='/' className="nav-link">Home</Link>
+                {/* Dispatch Event Listener -> window.dispatchEvent */}
+                <Link to='/' className="nav-link" onClick={() => window.dispatchEvent(new Event("homeClick"))}>Home</Link> 
                 <Link to='/favorites' className="nav-link">Favorites</Link>
             </div>
         </nav>

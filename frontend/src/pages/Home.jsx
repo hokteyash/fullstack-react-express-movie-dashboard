@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
-import "../css/Favorites.css"
+import "../css/Favorites.css";
 import { getPopularMovies, searchMovies } from "../services/api";
 import { Vortex } from "react-loader-spinner";
 
@@ -24,6 +24,8 @@ const Home = () => {
       }
     };
     fetchMovies();
+    window.addEventListener("homeClick", fetchMovies); // added Event Listener
+    return () => window.removeEventListener("homeClick", fetchMovies);
   }, []);
 
   const handleSubmit = (obj) => {};
@@ -33,6 +35,7 @@ const Home = () => {
     setLoading(true);
     try {
       const trimmedMovie = searchQuery.trim();
+      if (trimmedMovie.length == 0) return;
       const searchedMovies = await searchMovies(trimmedMovie);
       setMovies(searchedMovies);
     } catch (error) {
@@ -81,9 +84,9 @@ const Home = () => {
       <div className="movies-grid">
         {movies.length == 0 ? (
           <div className="favorites-empty">
-          <h2>No Movies Found :(</h2>
-          <p>Starting search another movie and they will appear here</p>
-        </div>
+            <h2>No Movies Found :(</h2>
+            <p>Starting search another movie and they will appear here</p>
+          </div>
         ) : (
           movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)
         )}
