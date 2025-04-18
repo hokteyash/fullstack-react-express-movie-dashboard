@@ -74,3 +74,35 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.search-container{
+  padding: 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.horizontal-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+}
+
+.horizontal-scroll {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  scroll-behavior: smooth;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 4px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

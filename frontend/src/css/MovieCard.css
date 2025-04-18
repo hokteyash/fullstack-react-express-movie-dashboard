@@ -7,9 +7,22 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
-.movie-card:hover {
+.movie-newCard{
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #1a1a1a;
+  transition: transform 0.2s;
+  overflow: hidden;
+  min-width: 250px; /* or 300px */
+  max-width: 250px;
+  flex-shrink: 0; /* Prevent cards from shrinking in a flex container */
+}
+
+.movie-card,.movie-newCard:hover {
   transform: translateY(-5px);
 }
 
@@ -45,6 +58,10 @@
 }
 
 .movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.movie-newCard:hover .movie-overlay {
   opacity: 1;
 }
 

@@ -47,22 +47,6 @@ const Home = () => {
     setSearchQuery("");
   };
 
-  if (loading) {
-    return (
-      <div className="loading">
-        <Vortex
-          visible={true}
-          height="100"
-          width="100"
-          ariaLabel="vortex-loading"
-          wrapperStyle={{}}
-          wrapperClass="vortex-wrapper"
-          colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-        />
-      </div>
-    );
-  }
-
   if (error) {
     return <div className="error-message">{error}</div>;
   }
@@ -81,16 +65,36 @@ const Home = () => {
           Search
         </button>
       </form>
-      <div className="movies-grid">
-        {movies.length == 0 ? (
-          <div className="favorites-empty">
-            <h2>No Movies Found :(</h2>
-            <p>Starting search another movie and they will appear here</p>
-          </div>
-        ) : (
-          movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)
-        )}
-      </div>
+      {!loading ? (
+        <div className="movies-grid">
+          {movies.length == 0 ? (
+            <div className="favorites-empty">
+              <h2>No Movies Found :(</h2>
+              <p>Starting search another movie and they will appear here</p>
+            </div>
+          ) : (
+            movies.map((movie) => (
+              <MovieCard
+                movie={movie}
+                key={movie.id}
+                onClick={() => console.log(JSON.stringify(movie))}
+              />
+            ))
+          )}
+        </div>
+      ) : (
+        <div className="loading">
+          <Vortex
+            visible={true}
+            height="100"
+            width="100"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+          />
+        </div>
+      )}
     </div>
   );
 };

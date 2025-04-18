@@ -1,0 +1,50 @@
+.horizontal-scroll-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Prevent buttons or scroll content from overflowing */
+    padding: 0 2rem; /* Add spacing so buttons don’t overlap content */
+  }
+  
+  .horizontal-scroll {
+    overflow-x: auto;
+    display: flex;
+    gap: 1.5rem;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    scrollbar-width: none;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scroll-btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60px;
+    width: 40px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .scroll-btn.left {
+    left: 0.5rem; /* Slight margin from the edge */
+  }
+  
+  .scroll-btn.right {
+    right: 0.5rem; /* Slight margin from the edge */
+  }
+  
+  .scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  

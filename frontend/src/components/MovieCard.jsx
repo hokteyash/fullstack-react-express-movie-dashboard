@@ -1,7 +1,7 @@
 import { useMovieContext } from "../context/MovieContext";
 import "../css/MovieCard.css";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onClick, isHome }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();
   const favorite = isFavorite(movie?.id);
   const onFavClick = (e) => {
@@ -11,7 +11,10 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <div className="movie-card">
+    <div
+      className={isHome ? "movie-newCard" : "movie-card"}
+      onClick={isHome ? () => onClick(movie) : null}
+    >
       <div className="movie-poster">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
