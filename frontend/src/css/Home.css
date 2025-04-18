@@ -106,3 +106,12 @@
 .horizontal-scroll::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
+.trailer-container {
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+

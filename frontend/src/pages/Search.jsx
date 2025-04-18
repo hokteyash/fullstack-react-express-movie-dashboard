@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getPopularMovies } from "../services/api";
+import { getMovieTrailer, getPopularMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import "../css/Favorites.css";
@@ -12,21 +12,26 @@ const Search = () => {
   const [bannerMovie, setBannerMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [trailerKey, setTrailerKey] = useState(null); // newly added
   const scrollRef = useRef();
 
   const scroll = (offset) => {
     scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
   };
 
-  const handleClickOnMovie = (movie) => {
+  const handleClickOnMovie = async (movie) => {
     // console.log(movie);
     setBannerMovie(movie);
-  }
+    const key = await getMovieTrailer(movie.id); // newly added
+    setTrailerKey(key); // newly added
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const popularMovies = await getPopularMovies();
+        const key = await getMovieTrailer(popularMovies[0]?.id);
+        setTrailerKey(key);
         setMovies(popularMovies);
         setBannerMovie(popularMovies[0]);
       } catch (error) {
@@ -62,8 +67,21 @@ const Search = () => {
 
   return (
     <div className="search-container">
-        {/* In the below MovieDetailCard Component "key" property is necessary because it uniquely identifies other cards */}
-      <MovieDetailCard movie={bannerMovie} key={Math.random()}/> 
+      {/* In the below MovieDetailCard Component "key" property is necessary because it uniquely identifies other cards */}
+      <MovieDetailCard movie={bannerMovie} key={Math.random()} />
+      {trailerKey && (
+        <div className="trailer-container">
+          <iframe
+            width="100%"
+            height="400"
+            src={`https://www.youtube.com/embed/${trailerKey}`}
+            title="Movie Trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      )}
+
       <div className="horizontal-scroll-container">
         <button className="scroll-btn left" onClick={() => scroll(-300)}>
           &#8249;
