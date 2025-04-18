@@ -11,9 +11,9 @@ const NavBar = () => {
                 <Link to='/' onClick={dispatchHomeClick}>Movie App</Link>
             </div>
             <div>
+                <Link to='/' className="nav-link">Home</Link>
                 {/* Dispatch Event Listener -> window.dispatchEvent */}
-                <Link to='/' className="nav-link" onClick={dispatchHomeClick}>Home</Link>
-                <Link to='/search' className="nav-link">Search</Link>
+                <Link to='/search' className="nav-link" onClick={dispatchHomeClick}>Search</Link>
                 <Link to='/favorites' className="nav-link">Favorites</Link>
             </div>
         </nav>
