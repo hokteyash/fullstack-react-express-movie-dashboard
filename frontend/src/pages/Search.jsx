@@ -19,7 +19,7 @@ const Search = () => {
   };
 
   const handleClickOnMovie = (movie) => {
-    console.log(movie);
+    // console.log(movie);
     setBannerMovie(movie);
   }
 

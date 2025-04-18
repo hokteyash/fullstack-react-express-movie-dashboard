@@ -9,14 +9,14 @@ import Search from "./pages/Search";
 function App() {
   return (
     <MovieProvider>
-      <NavBar/>
+      <NavBar />
       <main className="main-content">
-      <Routes>
-        <Route path="/search" element={<Home />} />
-        <Route path="/" element={<Search/>}/>
-        <Route path="/favorites" element={<Favorites/>} />
-      </Routes>
-    </main>
+        <Routes>
+          <Route path="/search" element={<Home />} />
+          <Route path="/" element={<Search />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </main>
     </MovieProvider>
   );
 }
