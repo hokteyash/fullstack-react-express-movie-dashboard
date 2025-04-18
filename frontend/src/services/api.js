@@ -25,7 +25,7 @@ export const getMovieTrailer = async (movieId) => {
   const trailer = data.results.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
-  // console.log(trailer);
+  console.log(trailer);
   return trailer ? trailer.key : null;
 };
 

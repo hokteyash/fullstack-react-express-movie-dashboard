@@ -1,0 +1,46 @@
+.trailer-unavailable {
+    max-width: 50%;
+    height: 400px; /* Same as trailer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff3f3;
+    border: 2px dashed #ff9999;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+    margin: 0 auto 20px auto;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .trailer-unavailable-img {
+    width: 50%;
+    height: 50%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+  
+  .trailer-unavailable h2 {
+    font-size: 1.7rem;
+    color: #d9534f;
+    margin: 0 0 8px;
+  }
+  
+  .trailer-unavailable p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

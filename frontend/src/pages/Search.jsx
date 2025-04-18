@@ -6,6 +6,7 @@ import "../css/Favorites.css";
 import "../css/HorizontalScroll.css"; // <-- make sure to include this
 import { Vortex } from "react-loader-spinner";
 import MovieDetailCard from "../components/MovieDetailCard";
+import TrailerUnavailable from "../components/TrailerUnavailable";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -69,7 +70,7 @@ const Search = () => {
     <div className="search-container">
       {/* In the below MovieDetailCard Component "key" property is necessary because it uniquely identifies other cards */}
       <MovieDetailCard movie={bannerMovie} key={Math.random()} />
-      {trailerKey && (
+      {trailerKey ? (
         <div className="trailer-container">
           <iframe
             width="100%"
@@ -80,6 +81,8 @@ const Search = () => {
             allowFullScreen
           ></iframe>
         </div>
+      ) : (
+        <TrailerUnavailable key={Math.random()}/>
       )}
 
       <div className="horizontal-scroll-container">
