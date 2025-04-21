@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getMovieTrailer, getPopularMovies } from "../services/api";
+import { getMovieRating, getMovieTrailer, getPopularMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import "../css/Favorites.css";
@@ -22,7 +22,13 @@ const Search = () => {
 
   const handleClickOnMovie = async (movie) => {
     // console.log(movie);
-    setBannerMovie(movie);
+    const fetchRating = await getMovieRating(movie?.title);
+    const newBannerMovie = {
+      ...movie,
+      rating: fetchRating.imdbRating,
+    }
+    setBannerMovie(newBannerMovie);
+    // tomorrow have to handle this function using Try and catch ....
     const key = await getMovieTrailer(movie.id); // newly added
     setTrailerKey(key); // newly added
   };
@@ -32,9 +38,14 @@ const Search = () => {
       try {
         const popularMovies = await getPopularMovies();
         const key = await getMovieTrailer(popularMovies[0]?.id);
+        const fetchRating = await getMovieRating(popularMovies[0]?.title);
         setTrailerKey(key);
         setMovies(popularMovies);
-        setBannerMovie(popularMovies[0]);
+        const newBannerMovie = {
+          ...popularMovies[0],
+          rating: fetchRating.imdbRating,
+        }
+        setBannerMovie(newBannerMovie);
       } catch (error) {
         console.error(error.message);
         setError("Failed to Load movies....");

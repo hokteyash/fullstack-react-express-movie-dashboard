@@ -4,6 +4,7 @@ import { Vortex } from "react-loader-spinner";
 import "../css/Home.css";
 
 const MovieDetailCard = ({ movie }) => {
+  console.log(movie);
   const [isLoaded, setIsLoaded] = useState(false);
 
   if (!movie) return null;
@@ -43,7 +44,7 @@ const MovieDetailCard = ({ movie }) => {
             <strong>Release:</strong> {movie.release_date}
           </p>
           <p>
-            <strong>Rating:</strong> ⭐ {movie.vote_average}/10
+            <strong>Rating:</strong> ⭐ {movie?.rating}
           </p>
           <p>
             <strong>Director:</strong> Christopher Nolan

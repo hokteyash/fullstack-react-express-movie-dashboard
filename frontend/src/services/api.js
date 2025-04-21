@@ -1,4 +1,5 @@
 const API_KEY = "ea342b123712f3b2339952c259ae62b7";
+const OMDB_API_KEY = "91f93dc6";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getPopularMovies = async () => {
@@ -28,4 +29,26 @@ export const getMovieTrailer = async (movieId) => {
   console.log(trailer);
   return trailer ? trailer.key : null;
 };
+
+export const getMovieRating = async (title) => {
+  const response = await fetch(
+    `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${OMDB_API_KEY}`
+  );
+  const data = await response.json();
+  if (data.Response === "True") {
+    return {
+      imdbRating: data.imdbRating,
+      imdbVotes: data.imdbVotes,
+    };
+  } else {
+    console.error("Rating not found:", data.Error);
+    return {
+      imdbRating: "N/A",
+      imdbVotes: "0",
+    };
+  }
+};
+
+
+
 
