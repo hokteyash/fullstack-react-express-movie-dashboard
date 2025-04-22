@@ -7,6 +7,7 @@ import "../css/HorizontalScroll.css"; // <-- make sure to include this
 import { Vortex } from "react-loader-spinner";
 import MovieDetailCard from "../components/MovieDetailCard";
 import TrailerUnavailable from "../components/TrailerUnavailable";
+import Trailer from "../components/Trailer";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -82,16 +83,7 @@ const Search = () => {
       {/* In the below MovieDetailCard Component "key" property is necessary because it uniquely identifies other cards */}
       <MovieDetailCard movie={bannerMovie} key={Math.random()} />
       {trailerKey ? (
-        <div className="trailer-container">
-          <iframe
-            width="100%"
-            height="400"
-            src={`https://www.youtube.com/embed/${trailerKey}`}
-            title="Movie Trailer"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <Trailer trailerKey={trailerKey} key={Math.random()}/>
       ) : (
         <TrailerUnavailable key={Math.random()}/>
       )}

@@ -4,7 +4,7 @@ import { Vortex } from "react-loader-spinner";
 import "../css/Home.css";
 
 const MovieDetailCard = ({ movie }) => {
-  console.log(movie);
+  // console.log(movie);
   const [isLoaded, setIsLoaded] = useState(false);
 
   if (!movie) return null;
