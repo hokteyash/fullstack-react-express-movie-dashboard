@@ -30,6 +30,7 @@ export const getMovieTrailer = async (movieId) => {
   return trailer ? trailer.key : null;
 };
 
+
 export const getMovieRating = async (title) => {
   const response = await fetch(
     `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${OMDB_API_KEY}`

@@ -288,7 +288,9 @@ const Home = () => {
     recognition.onend = () => setIsListening(false);
 
     recognition.onresult = (event) => {
+      // console.log(JSON.stringify(event.results));
       const transcript = event.results[0][0].transcript;
+      // console.log(transcript);
       setSearchQuery(transcript); // ✅ only this is enough
     };
 
@@ -333,10 +335,6 @@ const Home = () => {
     setSearchQuery(e.target.value);
     await performSearch(searchQuery);
   };
-
-  // const handleVoiceSearch = async (query) => {
-  //   await performSearch(query);
-  // };
 
   const performSearch = async (query) => {
     const trimmed = query.trim();

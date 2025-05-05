@@ -81,11 +81,11 @@ const Search = () => {
   return (
     <div className="search-container">
       {/* In the below MovieDetailCard Component "key" property is necessary because it uniquely identifies other cards */}
-      <MovieDetailCard movie={bannerMovie} key={Math.random()} />
+      <MovieDetailCard movie={bannerMovie} key={bannerMovie?.id} />
       {trailerKey ? (
-        <Trailer trailerKey={trailerKey} key={Math.random()}/>
+        <Trailer trailerKey={trailerKey} key={trailerKey}/> 
       ) : (
-        <TrailerUnavailable key={Math.random()}/>
+        <TrailerUnavailable key={trailerKey}/>
       )}
 
       <div className="horizontal-scroll-container">

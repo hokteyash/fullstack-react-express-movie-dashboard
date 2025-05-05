@@ -28,11 +28,10 @@
 }
 
 .favorites-empty p {
-  color: #999;
+  color: wheat;
   font-size: 1.2rem;
   line-height: 1.6;
 }
-
 
 /* Animation for new favorites being added */
 @keyframes fadeIn {
@@ -49,4 +48,3 @@
 .movies-grid > * {
   animation: fadeIn 0.3s ease-out forwards;
 }
-
