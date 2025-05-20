@@ -27,12 +27,23 @@ html, body {
   overflow-x: hidden;
 }
 
-body {
+/* body {
   margin: 0;
   width: 100%;
   min-height: 100vh;
   position: relative;
-}
+} */
+
+/* Added below css */
+/* body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+} */
 
 #root {
   width: 100%;

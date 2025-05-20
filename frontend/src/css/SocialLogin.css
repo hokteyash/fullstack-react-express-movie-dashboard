@@ -1,0 +1,21 @@
+.social-login-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.social-btn {
+  border: none;
+  background: linear-gradient(to bottom right, #4b2be1, #7153e3);
+  color: white; /* light gray icons */
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+}

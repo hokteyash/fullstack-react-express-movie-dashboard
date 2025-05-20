@@ -30,10 +30,11 @@ export const getMovieTrailer = async (movieId) => {
   return trailer ? trailer.key : null;
 };
 
-
 export const getMovieRating = async (title) => {
   const response = await fetch(
-    `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${OMDB_API_KEY}`
+    `https://www.omdbapi.com/?t=${encodeURIComponent(
+      title
+    )}&apikey=${OMDB_API_KEY}`
   );
   const data = await response.json();
   if (data.Response === "True") {
@@ -50,6 +51,23 @@ export const getMovieRating = async (title) => {
   }
 };
 
+// backend api's
+export const signupApi = async ({ name, email, password }) => {
+  const response = await fetch("http://localhost:5000/api/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+  });
+  const data = await response.json();
+  return data;
+};
 
-
-
+export const signinApi = async ({ email, password }) => {
+  const response = await fetch("http://localhost:5000/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await response.json();
+  return data;
+}
