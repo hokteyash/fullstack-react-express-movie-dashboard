@@ -1,5 +1,5 @@
-const API_KEY = "ea342b123712f3b2339952c259ae62b7";
-const OMDB_API_KEY = "91f93dc6";
+const API_KEY = <Your_API_Key>;
+const OMDB_API_KEY = <Your_OMDB_API_Key>;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getPopularMovies = async () => {
