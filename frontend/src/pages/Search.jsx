@@ -8,6 +8,7 @@ import { Vortex } from "react-loader-spinner";
 import MovieDetailCard from "../components/MovieDetailCard";
 import TrailerUnavailable from "../components/TrailerUnavailable";
 import Trailer from "../components/Trailer";
+import { useMovieContext } from "../context/MovieContext";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -16,7 +17,10 @@ const Search = () => {
   const [error, setError] = useState(null);
   const [trailerKey, setTrailerKey] = useState(null); // newly added
   const scrollRef = useRef();
+  const {user} = useMovieContext();
 
+  // console.log(user);
+  
   const scroll = (offset) => {
     scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
   };

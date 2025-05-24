@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRoutes = require("./routes/auth");
+const favoriteRoutes = require("./routes/favorites");
 
 const app = express();
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoriteRoutes);
 
 console.log(process.env.MONGO_URI);
 

@@ -1,26 +1,45 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { updateFavoritesApi } from "../services/api";
+import { showToast } from "../utils/validation";
 
 const MovieContext = createContext();
 
 export const useMovieContext = () => useContext(MovieContext);
 
 export const MovieProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() =>
+    JSON.parse(localStorage.getItem("favorites"))
+  );
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedFavs = localStorage.getItem("favorites");
-    if (storedFavs) setFavorites(JSON.parse(storedFavs));
+    const user = localStorage.getItem("user");
+    if (user) setUser(JSON.parse(user));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+    const delayDebounce = setTimeout(() => {
+      const savedFavorites = async () => {
+        try {
+          const response = await updateFavoritesApi(favorites, user?.email);
+          if (response?.status_code === 200) {
+            showToast("Saved to your Favorites!", "success");
+          } else {
+            showToast(response?.message, "error");
+          }
+        } catch (error) {
+          console.log(error);
+          showToast("Try again later!", "error");
+        }
+      };
+      if (user) {
+        localStorage.setItem("favorites", JSON.stringify(favorites)); // added new code
+        savedFavorites();
+      }
+    }, 1000);
 
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) setUser(JSON.parse(user));
-  },[]);
+    return () => clearTimeout(delayDebounce); // clean up
+  }, [favorites]);
 
   const addToFavorites = (movie) => {
     setFavorites((prev) => [...prev, movie]);
@@ -35,12 +54,16 @@ export const MovieProvider = ({ children }) => {
   };
 
   const login = (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
-  }
+    setFavorites(user.favorites);
+  };
 
   const logout = () => {
+    localStorage.removeItem("user");
     setUser(null);
-  }
+    setFavorites([]);
+  };
 
   const value = {
     favorites,
@@ -49,7 +72,7 @@ export const MovieProvider = ({ children }) => {
     isFavorite,
     login,
     logout,
-    user
+    user,
   };
 
   return (

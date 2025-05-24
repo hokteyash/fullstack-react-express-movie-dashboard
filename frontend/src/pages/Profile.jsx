@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { showToast } from "../utils/validation";
 
 const Profile = () => {
-  const { logout } = useMovieContext();
+  const { logout, user } = useMovieContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     logout();
     navigate("/"); // Redirect to homepage or login
-    showToast('Successfully logout!!','success');
+    showToast("Successfully logout!!", "success");
   };
 
   return (
@@ -22,13 +22,13 @@ const Profile = () => {
       <div className="card">
         <div className="left-section">
           <img src={profilePic} alt="Profile" className="profile-pic" />
-          <h2>John Doe</h2>
+          <h2>{user?.name}</h2>
           <p>Web Developer</p>
         </div>
         <div className="right-section">
           <h3>Profile Details</h3>
           <p>
-            <strong>Name :</strong> John Doe
+            <strong>Name :</strong> {user?.name}
           </p>
           <p>
             <strong>Age :</strong> 35
@@ -37,7 +37,7 @@ const Profile = () => {
             <strong>Mobile :</strong> +91 XXXXXXXXXX
           </p>
           <p>
-            <strong>Email :</strong> john@example.com
+            <strong>Email :</strong> {user?.email}
           </p>
           <p>
             <strong>Address :</strong> 123 Main St, Anytown, USA

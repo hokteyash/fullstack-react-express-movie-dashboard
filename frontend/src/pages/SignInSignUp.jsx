@@ -41,13 +41,14 @@ const SignInSignUp = () => {
     };
     try {
       const response = await signupApi(user);
-      console.log(response);
+      console.log('Inside Signup -> ',response);
       if (response.status_code === 200) {
         showToast("User created Successfully!", "success");
         const userWithToken = {
           name: user.name,
           email: user.email,
           token: response.token,
+          favorites: response.user.favorites,
         };
         localStorage.setItem("user", JSON.stringify(userWithToken));
         login(userWithToken);
@@ -92,12 +93,14 @@ const SignInSignUp = () => {
         password: password,
       };
       const response = await signinApi(user);
+      console.log('Inside SignIn -> ',response);
       if (response.status_code === 200) {
         showToast("Login Successfull!", "success");
         const userWithToken = {
           name: response.user.name,
           email: response.user.email,
           token: response.token,
+          favorites: response.user.favorites,
         };
         localStorage.setItem("user", JSON.stringify(userWithToken));
         login(userWithToken);

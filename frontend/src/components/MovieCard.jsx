@@ -4,6 +4,7 @@ import "../css/MovieCard.css";
 const MovieCard = ({ movie, onClick, isHome }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();
   const favorite = isFavorite(movie?.id);
+  // console.log(favorite);
   const onFavClick = (e) => {
     e.preventDefault();
     if (favorite) removeFromFavorites(movie?.id);

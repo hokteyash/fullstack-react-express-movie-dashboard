@@ -15,7 +15,7 @@ router.post("/signup", async (req, res) => {
         .status(400)
         .json({ status_code: 409, message: "User already exists" });
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({ name, email, password: hashedPassword, favorites:[] });
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
     res.json({
       status_code: 200,
@@ -24,6 +24,7 @@ router.post("/signup", async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        favorites: user.favorites,
       },
     });
   } catch (error) {
@@ -52,6 +53,7 @@ router.post("/login", async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        favorites: user.favorites,
       },
     });
   } catch (error) {

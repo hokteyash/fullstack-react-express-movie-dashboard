@@ -13,7 +13,7 @@ export const showToast = (message, type) => {
   if (type === "warn") {
     toast.warn(message, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,
@@ -25,7 +25,7 @@ export const showToast = (message, type) => {
   } else if (type === "error") {
     toast.error(message, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,
@@ -37,7 +37,7 @@ export const showToast = (message, type) => {
   } else {
     toast.success(message, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,

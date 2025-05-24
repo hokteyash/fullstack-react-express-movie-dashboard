@@ -70,4 +70,26 @@ export const signinApi = async ({ email, password }) => {
   });
   const data = await response.json();
   return data;
-}
+};
+
+export const updateFavoritesApi = async (favorites, email) => {
+  const response = await fetch("http://localhost:5000/api/favorites", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json", // ✅ this must be present
+    },
+    body: JSON.stringify({ favorites, email }),
+  });
+  return response.json();
+};
+
+export const fetchFavoritesApi = async (email) => {
+  const response = await fetch("http://localhost:5000/api/favorites", {
+    method: "GET",
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+  return response.json();
+};

@@ -48,3 +48,19 @@
 .movies-grid > * {
   animation: fadeIn 0.3s ease-out forwards;
 }
+
+.btnContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.btn{
+  padding: 1.5rem;
+  background: linear-gradient(to bottom right, #4b2be1, #7153e3);
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
