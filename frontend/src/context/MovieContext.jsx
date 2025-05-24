@@ -10,7 +10,11 @@ export const MovieProvider = ({ children }) => {
   const [favorites, setFavorites] = useState(() =>
     JSON.parse(localStorage.getItem("favorites"))
   );
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() =>
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const [hasInteractedWithFavorites, setHasInteractedWithFavorites] =
+    useState(false); // added new code
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -32,7 +36,7 @@ export const MovieProvider = ({ children }) => {
           showToast("Try again later!", "error");
         }
       };
-      if (user) {
+      if (user && hasInteractedWithFavorites) {
         localStorage.setItem("favorites", JSON.stringify(favorites)); // added new code
         savedFavorites();
       }
@@ -43,10 +47,12 @@ export const MovieProvider = ({ children }) => {
 
   const addToFavorites = (movie) => {
     setFavorites((prev) => [...prev, movie]);
+    setHasInteractedWithFavorites(true); // added new code
   };
 
   const removeFromFavorites = (movieId) => {
     setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+    setHasInteractedWithFavorites(true); // added new code
   };
 
   const isFavorite = (movieId) => {
@@ -57,12 +63,15 @@ export const MovieProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
     setFavorites(user.favorites);
+    localStorage.setItem("favorites", JSON.stringify(user.favorites)); // added new code
+    setHasInteractedWithFavorites(false); // added new code
   };
 
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
     setFavorites([]);
+    setHasInteractedWithFavorites(false); // added new code
   };
 
   const value = {
